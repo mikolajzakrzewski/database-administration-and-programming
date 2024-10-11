@@ -1,0 +1,39 @@
+name: apbd
+services:
+  pg:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: apbd
+      POSTGRES_PASSWORD: apbdpassword
+      POSTGRES_DB: apbddb
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:8
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: apbd@apbd.apbd
+      PGADMIN_DEFAULT_PASSWORD: apbdpassword
+    ports:
+      - "5051:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    platform: linux/amd64
+    restart: always
+    user: root
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: Apbd@1234
+    ports:
+      - "1434:1433"
+    volumes:
+      - mssql:/var/opt/mssql/data
+volumes:
+  pg:
+  pgadmin:
+  mssql:
