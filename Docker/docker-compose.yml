@@ -11,16 +11,6 @@ services:
       - "5433:5432"
     volumes:
       - pg:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4:8
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: apbd@apbd.apbd
-      PGADMIN_DEFAULT_PASSWORD: apbdpassword
-    ports:
-      - "5051:80"
-    volumes:
-      - pgadmin:/var/lib/pgadmin
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     platform: linux/amd64
@@ -35,5 +25,4 @@ services:
       - mssql:/var/opt/mssql/data
 volumes:
   pg:
-  pgadmin:
   mssql:
