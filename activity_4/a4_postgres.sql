@@ -51,7 +51,7 @@ $$
 BEGIN
     INSERT INTO departments
     VALUES ((SELECT MAX(department_id) + 10 FROM departments), new_department_name, new_manager_id,
-            proc2.new_location_id);
+            new_location_id);
 END;
 $$;
 
@@ -89,7 +89,7 @@ ROLLBACK;
 --    Wywołaj ją z parametrami 2004 oraz 0.05.
 
 -- PostgreSQL
-CREATE OR REPLACE PROCEDURE proc3(percentage_points NUMERIC(4, 2), year_limit INT,
+CREATE OR REPLACE PROCEDURE proc3(percentage_points NUMERIC(2, 2), year_limit INT,
                                   OUT modified_records_count INT)
     LANGUAGE plpgsql AS
 $$
